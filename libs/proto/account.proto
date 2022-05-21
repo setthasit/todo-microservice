@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "types/account.proto";
+
+package account;
+
+service AccountService {
+    rpc GetSelfInfo () returns (GetSelfInfoResponse);
+}
+
+message GetSelfInfoResponse {
+    Account account = 1;
+}

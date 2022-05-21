@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "types/task.proto";
+
+package todo;
+
+service TodoService {
+    rpc Create (CreateRequest) returns (CreateResponse);
+    rpc AddTask (AddTaskRequest) returns (AddTaskResponse);
+    rpc UpdateSubject (UpdateSubjectRequest) returns (UpdateSubjectResponse);
+    rpc UpdateStatus (UpdateStatusRequest) returns (UpdateStatusResponse);
+}
+
+// Create task
+message CreateRequest {
+    Task subject = 1;
+}
+
+message CreateResponse {
+    string subject_id = 1;
+}
+
+// Add task
+message AddTaskRequest {
+    string task_id = 1;
+    Task task = 2;
+}
+
+message AddTaskResponse {
+    repeated string error = 1;
+}
+
+// Update task
+message UpdateSubjectRequest {
+    string subject_id = 1;
+    Task subject = 2;
+}
+
+message UpdateSubjectResponse {
+    repeated string error = 1;
+}
+
+
+// Update status
+message UpdateStatusRequest {
+    string task_id = 1;
+    Status status = 2;
+}
+
+message UpdateStatusResponse {
+    repeated string error = 1;
+}
