@@ -5,8 +5,10 @@ import "types/account.proto";
 package account;
 
 service AccountService {
-    rpc GetSelfInfo () returns (GetSelfInfoResponse);
+    rpc GetSelfInfo (GetSelfInfoRequest) returns (GetSelfInfoResponse);
 }
+
+message GetSelfInfoRequest {}
 
 message GetSelfInfoResponse {
     Account account = 1;

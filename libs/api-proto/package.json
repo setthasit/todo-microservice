@@ -1,0 +1,11 @@
+{
+    "name": "api-proto",
+    "scripts": {
+        "compile": "npm run proto:auth && npm run proto:todo && npm run proto:account",
+        "proto:auth": "export NAME=auth && npm run mkdir && npm run proto:compile",
+        "proto:todo": "export NAME=todo && npm run mkdir && npm run proto:compile",
+        "proto:account": "export NAME=account && npm run mkdir && npm run proto:compile",
+        "proto:compile": "protoc -I=./proto --plugin=../../node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=src/${NAME} proto/${NAME}.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+        "mkdir": "mkdir -p src/${NAME}"
+    }
+}

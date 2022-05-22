@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+enum Priority {
+    URGENT = 0;
+    HIGH = 1;
+    MEDIUM = 2;
+    LOW = 3;
+}
+
+enum Status {
+    DONE = 0;
+    IN_PROGRESS = 1;
+    TO_DO = 2;
+}
+
+message Subject {
+    string name = 1;
+    string description = 2;
+    Priority priority = 3;
+    Status status = 4;
+    repeated Task task = 5;
+    int64 start_date = 6;
+    int64 end_date = 7;
+    string user_id = 8;
+}
+
+message Task {
+    string name = 1;
+    string description = 2;
+    Priority priority = 3;
+    Status status = 4;
+    repeated Task task = 5;
+    int64 start_date = 6;
+    int64 end_date = 7;
+}
