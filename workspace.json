@@ -2,6 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "api-proto": "libs/api-proto",
+    "bff-service": "apps/bff-service",
     "todo": "apps/todo"
   }
 }
