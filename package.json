@@ -5,20 +5,24 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "proto:compile": "nx run api-proto:compile"
   },
   "private": true,
   "dependencies": {
-    "@nestjs/common": "^8.0.0",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.0.0",
-    "tslib": "^2.3.0"
+    "@grpc/grpc-js": "1.6.7",
+    "@grpc/proto-loader": "0.6.12",
+    "@nestjs/common": "8.0.11",
+    "@nestjs/core": "8.0.11",
+    "@nestjs/microservices": "8.0.11",
+    "@nestjs/platform-express": "8.0.11",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.0.0",
+    "tslib": "2.3.0"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^8.0.0",
-    "@nestjs/testing": "^8.0.0",
+    "@nestjs/schematics": "8.0.11",
+    "@nestjs/testing": "8.0.11",
     "@nrwl/cli": "14.1.7",
     "@nrwl/eslint-plugin-nx": "14.1.7",
     "@nrwl/jest": "14.1.7",
@@ -34,9 +38,11 @@
     "eslint-config-prettier": "8.1.0",
     "jest": "27.5.1",
     "nx": "14.1.7",
-    "prettier": "^2.5.1",
+    "prettier": "2.5.1",
+    "protoc": "^1.0.4",
     "ts-jest": "27.1.4",
     "ts-node": "9.1.1",
+    "ts-proto": "^1.112.2",
     "typescript": "~4.6.2"
   }
 }
