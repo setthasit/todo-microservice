@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
@@ -14,6 +15,7 @@ async function bootstrap() {
   });
 
   await app.listen();
+  Logger.log(`Todo Service is running on: 0.0.0.0:50051`);
 }
 
 bootstrap();

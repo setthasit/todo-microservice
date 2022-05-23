@@ -8,7 +8,7 @@ import { TodoService } from './todo.service';
   imports: [
     ClientsModule.register([
       {
-        name: 'TODO_SERVICE',
+        name: todo.TODO_PACKAGE_NAME,
         transport: Transport.GRPC,
         options: {
           url: "0.0.0.0:50051",

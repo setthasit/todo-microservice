@@ -8,7 +8,7 @@ export class TodoService implements OnModuleInit {
     private svc: todo.TodoServiceClient
 
     constructor(
-        @Inject('TODO_SERVICE') private client: ClientGrpc 
+        @Inject(todo.TODO_PACKAGE_NAME) private client: ClientGrpc 
     ) {}
 
     onModuleInit() {
