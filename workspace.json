@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "api-proto": "libs/api-proto",
+    "auth-service": "apps/auth-service",
     "bff-service": "apps/bff-service",
     "todo": "apps/todo"
   }
