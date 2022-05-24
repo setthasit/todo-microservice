@@ -8,7 +8,7 @@ export class TodoService implements OnModuleInit {
     private svc: todo.TodoServiceClient
 
     constructor(
-        @Inject(todo.TODO_PACKAGE_NAME) private client: ClientGrpc 
+        @Inject(todo.TODO_PACKAGE_NAME) private client: ClientGrpc
     ) {}
 
     onModuleInit() {
@@ -19,8 +19,19 @@ export class TodoService implements OnModuleInit {
         return this.svc.healthCheck(request)
     }
 
-    // create(request: CreateRequest): Observable<CreateResponse>;
-    // addTask(request: AddTaskRequest): Observable<AddTaskResponse>;
-    // updateSubject(request: UpdateSubjectRequest): Observable<UpdateSubjectResponse>;
-    // updateStatus(request: UpdateStatusRequest): Observable<UpdateStatusResponse>;
+    async create(request: todo.CreateRequest): Promise<Observable<todo.CreateResponse>> {
+      return this.svc.create(request)
+    }
+
+    async addTask(request: todo.AddTaskRequest): Promise<Observable<todo.AddTaskResponse>> {
+      return this.svc.addTask(request)
+    }
+
+    async updateSubject(request: todo.UpdateSubjectRequest): Promise<Observable<todo.UpdateSubjectResponse>> {
+      return this.svc.updateSubject(request)
+    }
+
+    async updateStatus(request: todo.UpdateStatusRequest): Promise<Observable<todo.UpdateStatusResponse>> {
+      return this.svc.updateStatus(request)
+    }
 }
