@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
         options: {
           url: '0.0.0.0:50051',
           package: auth.AUTH_PACKAGE_NAME,
-          protoPath: 'libs/api-proto/proto/todo.proto',
+          protoPath: 'libs/api-proto/proto/auth.proto',
         },
       },
     ]),

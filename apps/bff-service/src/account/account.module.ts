@@ -13,7 +13,7 @@ import { AccountController } from './account.controller';
         options: {
           url: '0.0.0.0:50051',
           package: account.ACCOUNT_PACKAGE_NAME,
-          protoPath: 'libs/api-proto/proto/todo.proto',
+          protoPath: 'libs/api-proto/proto/account.proto',
         },
       },
     ]),
