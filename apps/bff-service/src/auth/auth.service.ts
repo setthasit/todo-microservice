@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { auth } from '@todo-microservices/api-proto';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService implements OnModuleInit {
@@ -23,7 +23,7 @@ export class AuthService implements OnModuleInit {
     return this.svc.signIn(request)
   }
 
-  async validate(request: auth.ValidateRequest): Promise<Observable<auth.ValidateResponse>> {
-    return this.svc.validate(request)
+  async validate(request: auth.ValidateRequest): Promise<auth.ValidateResponse> {
+    return firstValueFrom(this.svc.validate(request))
   }
 }
