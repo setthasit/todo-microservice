@@ -5,17 +5,19 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
+  const host = process.env.APP_TODO_SERVICE_URL
+
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.GRPC,
     options: {
-      url: "0.0.0.0:50051",
+      url: host,
       package: 'todo',
       protoPath: 'libs/api-proto/proto/todo.proto'
     }
   });
 
   await app.listen();
-  Logger.log(`Todo Service is running on: 0.0.0.0:50051`);
+  Logger.log(`Todo Service is running on: ${host}`);
 }
 
 bootstrap();

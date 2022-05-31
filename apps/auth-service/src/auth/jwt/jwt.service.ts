@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService as Jwt } from '@nestjs/jwt'
 import { InjectModel } from '@nestjs/mongoose'
-import { Auth, AuthClaim, AuthDocument, User, UserDocument } from '@todo-microservices/shared/models'
+import { AuthClaim, User, UserDocument } from '@todo-microservices/shared/models'
 import { Model } from 'mongoose'
 
 @Injectable()
@@ -10,7 +10,6 @@ export class JwtService {
 
   constructor(
     jwt: Jwt,
-    @InjectModel(Auth.name) private authRepo: Model<AuthDocument>,
     /*
       TODO: User Repo should not be use in this service
       will need to remove this and store required information in auth collection

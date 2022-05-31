@@ -4,6 +4,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices'
 import { auth } from '@todo-microservices/api-proto'
 
 import { AppModule } from './app/app.module'
+import serverConfig from './config/server.config'
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -11,7 +12,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: '0.0.0.0:50050',
+        url: serverConfig.hostUrl,
         package: auth.AUTH_PACKAGE_NAME,
         protoPath: 'libs/api-proto/proto/auth.proto',
       },
@@ -20,7 +21,7 @@ async function bootstrap() {
 
   await app.listen()
 
-  Logger.log(`Auth Service is running on: 0.0.0.0:50050`)
+  Logger.log(`Auth Service is running on: ${serverConfig.hostUrl}`)
 }
 
 bootstrap()

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { auth } from '@todo-microservices/api-proto';
+import serviceConfig from '../config/service.config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
@@ -11,7 +12,7 @@ import { AuthService } from './auth.service';
         name: auth.AUTH_PACKAGE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50050',
+          url: serviceConfig.authService,
           package: auth.AUTH_PACKAGE_NAME,
           protoPath: 'libs/api-proto/proto/auth.proto',
         },
