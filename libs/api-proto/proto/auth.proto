@@ -15,7 +15,8 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-    repeated string error = 1;
+    string token  = 1;
+    repeated string error = 2;
 }
 
 // SignIn

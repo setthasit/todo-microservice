@@ -5,6 +5,8 @@
     "api-proto": "libs/api-proto",
     "auth-service": "apps/auth-service",
     "bff-service": "apps/bff-service",
+    "shared-exceptions": "libs/shared/exceptions",
+    "shared-models": "libs/shared/models",
     "todo": "apps/todo"
   }
 }

@@ -1,8 +1,8 @@
 /* eslint-disable */
-import * as Long from 'long';
-import * as _m0 from 'protobufjs/minimal';
+import * as Long from 'long'
+import * as _m0 from 'protobufjs/minimal'
 
-export const protobufPackage = '';
+export const protobufPackage = ''
 
 export enum Priority {
   URGENT = 0,
@@ -20,31 +20,31 @@ export enum Status {
 }
 
 export interface Subject {
-  name: string;
-  description: string;
-  priority: Priority;
-  status: Status;
-  task: Task[];
-  startDate: number;
-  endDate: number;
-  userId: string;
+  name: string
+  description: string
+  priority: Priority
+  status: Status
+  task: Task[]
+  startDate: number
+  endDate: number
+  userId: string
 }
 
 export interface Task {
-  name: string;
-  description: string;
-  priority: Priority;
-  status: Status;
-  task: Task[];
-  startDate: number;
-  endDate: number;
+  name: string
+  description: string
+  priority: Priority
+  status: Status
+  task: Task[]
+  startDate: number
+  endDate: number
 }
 
-export const _PACKAGE_NAME = '';
+export const _PACKAGE_NAME = ''
 
 // If you get a compile-error about 'Constructor<Long> and ... have no overlap',
 // add '--ts_proto_opt=esModuleInterop=true' as a flag when calling 'protoc'.
 if (_m0.util.Long !== Long) {
-  _m0.util.Long = Long as any;
-  _m0.configure();
+  _m0.util.Long = Long as any
+  _m0.configure()
 }

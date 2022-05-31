@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@todo-microservices/api-proto": ["libs/api-proto/src/index.ts"]
+      "@todo-microservices/api-proto": ["libs/api-proto/src/index.ts"],
+      "@todo-microservices/shared/exceptions": [
+        "libs/shared/exceptions/src/index.ts"
+      ],
+      "@todo-microservices/shared/models": ["libs/shared/models/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
