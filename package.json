@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "start:all": "nx run-many --parallel --target=serve --projects=bff-service,todo,auth-service",
+    "start:all": "nx run-many --parallel --target=serve --projects=bff-service,todo-service,auth-service",
     "proto:compile": "nx run api-proto:compile"
   },
   "private": true,

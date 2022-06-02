@@ -7,6 +7,6 @@
     "bff-service": "apps/bff-service",
     "shared-exceptions": "libs/shared/exceptions",
     "shared-models": "libs/shared/models",
-    "todo": "apps/todo"
+    "todo-service": "apps/todo-service"
   }
 }
