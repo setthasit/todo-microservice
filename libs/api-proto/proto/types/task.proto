@@ -19,8 +19,8 @@ message Subject {
     Priority priority = 3;
     Status status = 4;
     repeated Task task = 5;
-    int64 start_date = 6;
-    int64 end_date = 7;
+    uint64 start_date = 6;
+    uint64 end_date = 7;
     string user_id = 8;
 }
 
@@ -30,6 +30,6 @@ message Task {
     Priority priority = 3;
     Status status = 4;
     repeated Task task = 5;
-    int64 start_date = 6;
-    int64 end_date = 7;
+    uint64 start_date = 6;
+    uint64 end_date = 7;
 }

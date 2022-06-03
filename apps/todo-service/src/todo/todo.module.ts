@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { Todo, TodoSchema } from '@todo-microservices/shared/models'
+import { Subject, SubjectSchema } from '@todo-microservices/shared/models'
 import { TodoController } from './todo.controller'
 import { TodoService } from './todo.service'
 
@@ -8,8 +8,8 @@ import { TodoService } from './todo.service'
   imports: [
     MongooseModule.forFeature([
       {
-        name: Todo.name,
-        schema: TodoSchema,
+        name: Subject.name,
+        schema: SubjectSchema,
       },
     ]),
   ],

@@ -16,14 +16,20 @@ export class TodoController implements todo.TodoServiceController {
   @GrpcMethod(todo.TODO_SERVICE_NAME)
   async create(request: todo.CreateRequest): Promise<todo.CreateResponse> {
     const subject = await this.todoService.createSubject(request.subject)
+
     return {
       subjectId: subject.id,
+      subject: subject
     }
   }
 
   @GrpcMethod(todo.TODO_SERVICE_NAME)
-  addTask(request: todo.AddTaskRequest): Promise<todo.AddTaskResponse> {
-    return
+  async addTask(request: todo.AddTaskRequest): Promise<todo.AddTaskResponse> {
+    const subject = await this.todoService.createTask(request.parentId ,request.task)
+    return {
+      subjectId: subject.id,
+      subject: subject
+    }
   }
 
   @GrpcMethod(todo.TODO_SERVICE_NAME)

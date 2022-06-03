@@ -3,7 +3,7 @@ import { Document } from 'mongoose'
 
 export type UserDocument = User & Document
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, minimize: false })
 export class User {
     @Prop({ required: true, index: true })
     email: string

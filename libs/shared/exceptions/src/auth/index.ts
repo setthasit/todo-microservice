@@ -1,2 +1,2 @@
 // export * from './JwtException'
-export * from './serviceException'
+export * from './ServiceException'

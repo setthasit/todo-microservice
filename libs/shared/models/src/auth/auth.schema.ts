@@ -3,7 +3,7 @@ import { Document } from 'mongoose'
 
 export type AuthDocument = Auth & Document
 
-@Schema({ timestamps: true })
+@Schema({ timestamps: true, expires: '90d', minimize: false })
 export class Auth {
     @Prop({ required: true, index: true })
     token: string

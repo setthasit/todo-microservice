@@ -23,15 +23,15 @@ export class TodoService implements OnModuleInit {
       return firstValueFrom(this.svc.create({ subject }))
     }
 
-    async addTask(request: todo.AddTaskRequest): Promise<Observable<todo.AddTaskResponse>> {
-      return this.svc.addTask(request)
+    async addTask(parentId: string, task: todo_types.Task): Promise<todo.AddTaskResponse> {
+      return firstValueFrom(this.svc.addTask({ parentId, task }))
     }
 
-    async updateSubject(request: todo.UpdateSubjectRequest): Promise<Observable<todo.UpdateSubjectResponse>> {
-      return this.svc.updateSubject(request)
+    async updateSubject(request: todo.UpdateSubjectRequest): Promise<todo.UpdateSubjectResponse> {
+      return firstValueFrom(this.svc.updateSubject(request))
     }
 
-    async updateStatus(request: todo.UpdateStatusRequest): Promise<Observable<todo.UpdateStatusResponse>> {
-      return this.svc.updateStatus(request)
+    async updateStatus(request: todo.UpdateStatusRequest): Promise<todo.UpdateStatusResponse> {
+      return firstValueFrom(this.svc.updateStatus(request))
     }
 }

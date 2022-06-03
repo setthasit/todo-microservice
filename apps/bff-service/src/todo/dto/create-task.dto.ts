@@ -1,7 +1,11 @@
 import { todo_types } from "@todo-microservices/api-proto"
+import { SubjectDto } from "@todo-microservices/shared/models"
 import { IsEnum, IsOptional, IsString } from "class-validator"
 
-export class CreateSubjectRequest {
+export class CreateTaskRequest {
+  @IsString()
+  parentId: string
+
   @IsString()
   name: string
 
@@ -23,6 +27,6 @@ export class CreateSubjectRequest {
   endDate?: Date
 }
 
-export class CreateSubjectResponse {
-  subjectId: string
+export class CreateTaskResponse {
+  subject: SubjectDto
 }

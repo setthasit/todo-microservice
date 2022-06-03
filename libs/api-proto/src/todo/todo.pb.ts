@@ -21,16 +21,18 @@ export interface CreateRequest {
 
 export interface CreateResponse {
   subjectId: string
+  subject: Subject | undefined
 }
 
 /** Add task */
 export interface AddTaskRequest {
-  taskId: string
+  parentId: string
   task: Task | undefined
 }
 
 export interface AddTaskResponse {
-  error: string[]
+  subjectId: string
+  subject: Subject | undefined
 }
 
 /** Update task */
@@ -40,7 +42,8 @@ export interface UpdateSubjectRequest {
 }
 
 export interface UpdateSubjectResponse {
-  error: string[]
+  subjectId: string
+  subject: Subject | undefined
 }
 
 /** Update status */
@@ -50,7 +53,8 @@ export interface UpdateStatusRequest {
 }
 
 export interface UpdateStatusResponse {
-  error: string[]
+  taskId: string
+  status: Status
 }
 
 export const TODO_PACKAGE_NAME = 'todo'

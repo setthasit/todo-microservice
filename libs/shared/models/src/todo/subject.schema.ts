@@ -3,10 +3,10 @@ import { todo_types } from '@todo-microservices/api-proto'
 import { Document } from 'mongoose'
 import { Task } from './task.schema'
 
-export type TodoDocument = Todo & Document
+export type SubjectDocument = Subject & Document
 
-@Schema({ timestamps: true })
-export class Todo {
+@Schema({ timestamps: true, minimize: false })
+export class Subject {
   @Prop({ required: true, index: true })
   name: string
 
@@ -32,4 +32,4 @@ export class Todo {
   userId: string
 }
 
-export const TodoSchema = SchemaFactory.createForClass(Todo)
+export const SubjectSchema = SchemaFactory.createForClass(Subject)
