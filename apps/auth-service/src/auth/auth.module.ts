@@ -23,8 +23,6 @@ import { JwtService } from './jwt/jwt.service'
         name: User.name,
         schema: UserSchema,
       },
-    ]),
-    MongooseModule.forFeature([
       {
         name: Auth.name,
         schema: AuthSchema,

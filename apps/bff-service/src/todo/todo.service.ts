@@ -1,7 +1,7 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { todo } from '@todo-microservices/api-proto'
-import { Observable } from 'rxjs';
+import { todo, todo_types } from '@todo-microservices/api-proto'
+import { Observable, firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class TodoService implements OnModuleInit {
@@ -19,8 +19,8 @@ export class TodoService implements OnModuleInit {
         return this.svc.healthCheck(request)
     }
 
-    async create(request: todo.CreateRequest): Promise<Observable<todo.CreateResponse>> {
-      return this.svc.create(request)
+    async create(subject: todo_types.Subject): Promise<todo.CreateResponse> {
+      return firstValueFrom(this.svc.create({ subject }))
     }
 
     async addTask(request: todo.AddTaskRequest): Promise<Observable<todo.AddTaskResponse>> {
