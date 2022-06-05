@@ -14,22 +14,45 @@ enum Status {
 }
 
 message Subject {
-    string name = 1;
-    string description = 2;
-    Priority priority = 3;
-    Status status = 4;
-    repeated Task task = 5;
-    uint64 start_date = 6;
-    uint64 end_date = 7;
-    string user_id = 8;
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  Priority priority = 4;
+  Status status = 5;
+  repeated Task task = 6;
+  uint32 start_date = 7;
+  uint32 end_date = 8;
+  string user_id = 9;
+}
+
+message SubjectCreateRequest {
+  string name = 1;
+  string description = 2;
+  Priority priority = 3;
+  Status status = 4;
+  repeated Task task = 5;
+  uint32 start_date = 6;
+  uint32 end_date = 7;
+  string user_id = 8;
 }
 
 message Task {
-    string name = 1;
-    string description = 2;
-    Priority priority = 3;
-    Status status = 4;
-    repeated Task task = 5;
-    uint64 start_date = 6;
-    uint64 end_date = 7;
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  Priority priority = 4;
+  Status status = 5;
+  repeated Task task = 6;
+  uint32 start_date = 7;
+  uint32 end_date = 8;
+}
+
+message TaskCreateRequest {
+  string name = 1;
+  string description = 2;
+  Priority priority = 3;
+  Status status = 4;
+  repeated Task task = 5;
+  uint32 start_date = 6;
+  uint32 end_date = 7;
 }

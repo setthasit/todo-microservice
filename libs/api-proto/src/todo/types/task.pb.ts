@@ -20,6 +20,18 @@ export enum Status {
 }
 
 export interface Subject {
+  id: string
+  name: string
+  description: string
+  priority: Priority
+  status: Status
+  task: Task[]
+  startDate: number
+  endDate: number
+  userId: string
+}
+
+export interface SubjectCreateRequest {
   name: string
   description: string
   priority: Priority
@@ -31,6 +43,17 @@ export interface Subject {
 }
 
 export interface Task {
+  id: string
+  name: string
+  description: string
+  priority: Priority
+  status: Status
+  task: Task[]
+  startDate: number
+  endDate: number
+}
+
+export interface TaskCreateRequest {
   name: string
   description: string
   priority: Priority

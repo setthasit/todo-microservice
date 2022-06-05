@@ -6,10 +6,13 @@ package todo;
 
 service TodoService {
   rpc HealthCheck (HealthCheckRequest) returns (HealthCheckResponse);
+  rpc GetAll (GetAllRequest) returns (GetAllResponse);
+  rpc GetOne (GetOneRequest) returns (GetOneResponse);
   rpc Create (CreateRequest) returns (CreateResponse);
   rpc AddTask (AddTaskRequest) returns (AddTaskResponse);
   rpc UpdateSubject (UpdateSubjectRequest) returns (UpdateSubjectResponse);
-  rpc UpdateStatus (UpdateStatusRequest) returns (UpdateStatusResponse);
+  rpc UpdateSubjectStatus (UpdateSubjectStatusRequest) returns (UpdateSubjectStatusResponse);
+  rpc UpdateTaskStatus (UpdateTaskStatusRequest) returns (UpdateTaskStatusResponse);
 }
 
 // Health check
@@ -19,25 +22,41 @@ message HealthCheckResponse {
   repeated string error = 1;
 }
 
-// Create task
-message CreateRequest {
+// Get all
+message GetAllRequest {
+  string userId = 1;
+}
+
+message GetAllResponse {
+  repeated Subject subjects = 1;
+}
+
+// Get one
+message GetOneRequest {
+  string subjectId = 1;
+}
+
+message GetOneResponse {
   Subject subject = 1;
 }
 
+// Create task
+message CreateRequest {
+  SubjectCreateRequest subject = 1;
+}
+
 message CreateResponse {
-  string subjectId = 1;
   Subject subject = 2;
 }
 
 // Add task
 message AddTaskRequest {
   string parent_id = 1;
-  Task task = 2;
+  TaskCreateRequest task = 2;
 }
 
 message AddTaskResponse {
-  string subject_id = 1;
-  Subject subject = 2;
+  Subject subject = 1;
 }
 
 // Update task
@@ -47,18 +66,27 @@ message UpdateSubjectRequest {
 }
 
 message UpdateSubjectResponse {
+  Subject subject = 1;
+}
+
+
+// Update Subject status
+message UpdateSubjectStatusRequest {
   string subject_id = 1;
-  Subject subject = 2;
-}
-
-
-// Update status
-message UpdateStatusRequest {
-  string task_id = 1;
   Status status = 2;
 }
 
-message UpdateStatusResponse {
-  string task_id = 1;
-  Status status = 2;
+message UpdateSubjectStatusResponse {
+  Status status = 1;
+}
+
+// Update Task status
+message UpdateTaskStatusRequest {
+  string subject_id = 1;
+  string task_id = 2;
+  Status status = 3;
+}
+
+message UpdateTaskStatusResponse {
+  Status status = 1;
 }

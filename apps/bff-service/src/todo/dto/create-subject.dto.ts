@@ -1,5 +1,5 @@
 import { todo_types } from "@todo-microservices/api-proto"
-import { SubjectDto } from "@todo-microservices/shared/models"
+import { Subject } from "@todo-microservices/shared/models"
 import { IsEnum, IsOptional, IsString } from "class-validator"
 
 export class CreateSubjectRequest {
@@ -25,5 +25,5 @@ export class CreateSubjectRequest {
 }
 
 export class CreateSubjectResponse {
-  subject: SubjectDto
+  subject: Subject
 }

@@ -2,7 +2,12 @@
 import { GrpcMethod, GrpcStreamMethod } from '@nestjs/microservices'
 import * as Long from 'long'
 import * as _m0 from 'protobufjs/minimal'
-import { Status, Subject, Task } from './types/task.pb'
+import {
+  Status,
+  Subject,
+  SubjectCreateRequest,
+  TaskCreateRequest,
+} from './types/task.pb'
 import { Observable } from 'rxjs'
 
 export const protobufPackage = 'todo'
@@ -14,24 +19,40 @@ export interface HealthCheckResponse {
   error: string[]
 }
 
-/** Create task */
-export interface CreateRequest {
+/** Get all */
+export interface GetAllRequest {
+  userId: string
+}
+
+export interface GetAllResponse {
+  subjects: Subject[]
+}
+
+/** Get one */
+export interface GetOneRequest {
+  subjectId: string
+}
+
+export interface GetOneResponse {
   subject: Subject | undefined
 }
 
+/** Create task */
+export interface CreateRequest {
+  subject: SubjectCreateRequest | undefined
+}
+
 export interface CreateResponse {
-  subjectId: string
   subject: Subject | undefined
 }
 
 /** Add task */
 export interface AddTaskRequest {
   parentId: string
-  task: Task | undefined
+  task: TaskCreateRequest | undefined
 }
 
 export interface AddTaskResponse {
-  subjectId: string
   subject: Subject | undefined
 }
 
@@ -42,18 +63,27 @@ export interface UpdateSubjectRequest {
 }
 
 export interface UpdateSubjectResponse {
-  subjectId: string
   subject: Subject | undefined
 }
 
-/** Update status */
-export interface UpdateStatusRequest {
+/** Update Subject status */
+export interface UpdateSubjectStatusRequest {
+  subjectId: string
+  status: Status
+}
+
+export interface UpdateSubjectStatusResponse {
+  status: Status
+}
+
+/** Update Task status */
+export interface UpdateTaskStatusRequest {
+  subjectId: string
   taskId: string
   status: Status
 }
 
-export interface UpdateStatusResponse {
-  taskId: string
+export interface UpdateTaskStatusResponse {
   status: Status
 }
 
@@ -61,6 +91,10 @@ export const TODO_PACKAGE_NAME = 'todo'
 
 export interface TodoServiceClient {
   healthCheck(request: HealthCheckRequest): Observable<HealthCheckResponse>
+
+  getAll(request: GetAllRequest): Observable<GetAllResponse>
+
+  getOne(request: GetOneRequest): Observable<GetOneResponse>
 
   create(request: CreateRequest): Observable<CreateResponse>
 
@@ -70,7 +104,13 @@ export interface TodoServiceClient {
     request: UpdateSubjectRequest
   ): Observable<UpdateSubjectResponse>
 
-  updateStatus(request: UpdateStatusRequest): Observable<UpdateStatusResponse>
+  updateSubjectStatus(
+    request: UpdateSubjectStatusRequest
+  ): Observable<UpdateSubjectStatusResponse>
+
+  updateTaskStatus(
+    request: UpdateTaskStatusRequest
+  ): Observable<UpdateTaskStatusResponse>
 }
 
 export interface TodoServiceController {
@@ -80,6 +120,14 @@ export interface TodoServiceController {
     | Promise<HealthCheckResponse>
     | Observable<HealthCheckResponse>
     | HealthCheckResponse
+
+  getAll(
+    request: GetAllRequest
+  ): Promise<GetAllResponse> | Observable<GetAllResponse> | GetAllResponse
+
+  getOne(
+    request: GetOneRequest
+  ): Promise<GetOneResponse> | Observable<GetOneResponse> | GetOneResponse
 
   create(
     request: CreateRequest
@@ -96,22 +144,32 @@ export interface TodoServiceController {
     | Observable<UpdateSubjectResponse>
     | UpdateSubjectResponse
 
-  updateStatus(
-    request: UpdateStatusRequest
+  updateSubjectStatus(
+    request: UpdateSubjectStatusRequest
   ):
-    | Promise<UpdateStatusResponse>
-    | Observable<UpdateStatusResponse>
-    | UpdateStatusResponse
+    | Promise<UpdateSubjectStatusResponse>
+    | Observable<UpdateSubjectStatusResponse>
+    | UpdateSubjectStatusResponse
+
+  updateTaskStatus(
+    request: UpdateTaskStatusRequest
+  ):
+    | Promise<UpdateTaskStatusResponse>
+    | Observable<UpdateTaskStatusResponse>
+    | UpdateTaskStatusResponse
 }
 
 export function TodoServiceControllerMethods() {
   return function (constructor: Function) {
     const grpcMethods: string[] = [
       'healthCheck',
+      'getAll',
+      'getOne',
       'create',
       'addTask',
       'updateSubject',
-      'updateStatus',
+      'updateSubjectStatus',
+      'updateTaskStatus',
     ]
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(

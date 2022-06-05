@@ -3,7 +3,9 @@ import {
   Controller,
   Get,
   Inject,
+  Param,
   Post,
+  Put,
   Request,
   UseGuards,
 } from '@nestjs/common'
@@ -18,6 +20,14 @@ import {
 } from './dto/create-subject.dto'
 import { TodoService } from './todo.service'
 import { CreateTaskRequest, CreateTaskResponse } from './dto/create-task.dto'
+import {
+  UpdateSubjectStatusRequest,
+  UpdateSubjectStatusResponse,
+} from './dto/update-subject-status.dto'
+import {
+  UpdateTaskStatusRequest,
+  UpdateTaskStatusResponse,
+} from './dto/update-task-status.dto'
 
 @Controller('todo')
 @UseGuards(JwtAuthGuard)
@@ -27,6 +37,16 @@ export class TodoController {
   @Get('health')
   public async healthCheck() {
     return this.todoService.healthCheck({})
+  }
+
+  @Get('subject/all')
+  public async getAll(@Request() req: AuthRequest) {
+    return this.todoService.getAll({ userId: req.accountId })
+  }
+
+  @Get('subject/info/:subject_id')
+  public async getInfo(@Param('subject_id') subjectId: string) {
+    return this.todoService.getOne({ subjectId })
   }
 
   @Post('subject')
@@ -46,10 +66,7 @@ export class TodoController {
     })
 
     return {
-      subject: {
-        id: subject.subjectId,
-        ...subject.subject,
-      },
+      subject: subject.subject,
     }
   }
 
@@ -57,7 +74,7 @@ export class TodoController {
   public async createTask(
     @Body() body: CreateTaskRequest
   ): Promise<CreateTaskResponse> {
-    const subject = await this.todoService.addTask(body.parentId, {
+    const task = await this.todoService.addTask(body.parentId, {
       name: body.name,
       description: body.description,
       priority: body.priority || todo_types.Priority.LOW,
@@ -68,10 +85,36 @@ export class TodoController {
     })
 
     return {
-      subject: {
-        id: subject.subjectId,
-        ...subject.subject,
-      },
+      subject: task.subject,
+    }
+  }
+
+  @Put('subject/status')
+  public async updateSubjectStatus(
+    @Body() body: UpdateSubjectStatusRequest
+  ): Promise<UpdateSubjectStatusResponse> {
+    const resp = await this.todoService.updateSubjectStatus(
+      body.subjectId,
+      body.status
+    )
+
+    return {
+      status: resp.status,
+    }
+  }
+
+  @Put('task/status')
+  public async updateTaskStatus(
+    @Body() body: UpdateTaskStatusRequest
+  ): Promise<UpdateTaskStatusResponse> {
+    const resp = await this.todoService.updateTaskStatus(
+      body.subjectId,
+      body.taskId,
+      body.status
+    )
+
+    return {
+      status: resp.status,
     }
   }
 }

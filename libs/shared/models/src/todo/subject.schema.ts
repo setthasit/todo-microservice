@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { todo_types } from '@todo-microservices/api-proto'
-import { Document } from 'mongoose'
+import { Document, Schema as MongooseSchema } from 'mongoose'
 import { Task } from './task.schema'
 
 export type SubjectDocument = Subject & Document
 
 @Schema({ timestamps: true, minimize: false })
 export class Subject {
+  id: string
+
   @Prop({ required: true, index: true })
   name: string
 
