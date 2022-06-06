@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "914ef71a-01c0-4090-a0d0-1790e5525589",
+		"name": "Todo Microservice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var response = pm.response.json();",
+									"",
+									"pm.environment.set(\"AUTH_TOKEN\", response.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"artateq@gmail.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/auth/register",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" var response = pm.response.json();",
+									"",
+									"pm.environment.set(\"AUTH_TOKEN\", response.token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"artateq@gmail.com\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/auth/signin",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todo",
+			"item": [
+				{
+					"name": "Get all Subjects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Meet everyones\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/subject/all",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"subject",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Subject info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Meet everyones\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/subject/info/629cb6c77f748aa2745320ab",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"subject",
+								"info",
+								"629cb6c77f748aa2745320ab"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Grocery\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/subject",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"parentId\": \"629c85b46683425be31d3583\",\n    \"name\": \"Buy lettuce\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/task",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Subject status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subjectId\": \"629cb6c77f748aa2745320ab\",\n    \"status\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/subject/status",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"subject",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subjectId\": \"629cb6c77f748aa2745320ab\",\n    \"taskId\": \"629cb8b33ef70c1b0fd3879b\",\n    \"status\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BFF_URL}}/todo/task/status",
+							"host": [
+								"{{BFF_URL}}"
+							],
+							"path": [
+								"todo",
+								"task",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
